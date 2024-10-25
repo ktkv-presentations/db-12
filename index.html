@@ -278,6 +278,50 @@ BEGIN
 END;
                         </code></pre>
                     </section>
+                    <section data-auto-animate>
+                        <h1>Циклы с использованием курсора</h1>
+                        <p>Курсоры позволяют итерироваться по результатам запроса построчно</p>
+                        <pre><code data-trim class="sql">
+DECLARE cursor_name CURSOR FOR SELECT_statement;
+OPEN cursor_name;
+FETCH cursor_name INTO variable_list;
+CLOSE cursor_name;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Пример цикла с использованием курсора</h1>
+                        <pre><code data-trim class="sql">
+DELIMITER //
+CREATE PROCEDURE ProcessEmployees()
+BEGIN
+    DECLARE emp_id INT;
+    DECLARE emp_salary DECIMAL(10,2);
+    DECLARE done INT DEFAULT FALSE;
+    
+    DECLARE emp_cursor CURSOR FOR SELECT id, salary FROM employees;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    
+    OPEN emp_cursor;
+    read_loop: LOOP
+        FETCH emp_cursor INTO emp_id, emp_salary;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        
+        IF emp_salary &lt; 3000 THEN
+            UPDATE employees SET salary = salary * 1.1 WHERE id = emp_id;
+        END IF;
+    END LOOP;
+    
+    CLOSE emp_cursor;
+END //
+DELIMITER ;
+
+-- используется курсор emp_cursor для построчной обработки
+-- данных из таблицы employees. Если зарплата сотрудника
+-- ниже 3000, она увеличивается на 10%.
+                        </code></pre>
+                    </section>
                 </section>
                 <section>
                     <section data-auto-animate>
@@ -299,15 +343,32 @@ END;
                             триггеров часто необходимо использовать точку с
                             запятой внутри тела процедуры
                         </p>
-                        <pre><code data-trim class="sql">
+                        <pre><code data-line-numbers="1-6|3|4|5" data-trim class="sql">
 CREATE PROCEDURE ExampleProcedure()
 BEGIN
     DECLARE v_message VARCHAR(100);
     SET v_message = 'Hello, World!';
     SELECT v_message;
 END
-DELIMITER ;
                         </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Как читает код SQL</h1>
+                        <pre><code data-id="code" data-trim class="sql">
+CREATE PROCEDURE ExampleProcedure()
+BEGIN
+    DECLARE v_message VARCHAR(100);
+    SET v_message = 'Hello, World!';
+    SELECT v_message;
+END
+                            </code></pre>
+                    </section><section data-auto-animate>
+                        <h1>Как читает код SQL</h1>
+                        <pre><code data-id="code" data-trim class="sql">
+CREATE PROCEDURE ExampleProcedure()
+BEGIN
+    DECLARE v_message VARCHAR(100);
+                            </code></pre>
                     </section>
                     <section data-auto-animate>
                         <h1>Изменение делимитера</h1>
@@ -333,6 +394,19 @@ DELIMITER ;
                             стандартному
                             <code>;</code>
                         </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4>Пример создания триггера</h4>
+                        <pre><code data-trim class="sql">
+DELIMITER //
+CREATE TRIGGER before_insert_example
+BEFORE INSERT ON example_table
+FOR EACH ROW
+BEGIN
+    SET NEW.created_at = NOW();
+END //
+DELIMITER ;
+                        </code></pre>
                     </section>
                 </section>
             </div>

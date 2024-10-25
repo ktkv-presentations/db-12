@@ -23,189 +23,317 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <h1>Beautiful presentations</h1>
-                    <h2>New features</h2>
-                    <ul>
-                        <li>Nerd icons </li>
-                        <li>
-                            <code class="js">
-                                (inline) => code("highlighting")
-                            </code>
-                        </li>
-                        <li>Automatic QR Code generation</li>
-                        <li>and much more!</li>
-                    </ul>
-                </section>
-                <section>
-                    <h1>CUSTOM TOKYONIGHT THEME</h1>
-                    <h2 class="fragment">THAT HAS</h2>
-                    <h3 class="fragment">MULTI</h3>
-                    <h4 class="fragment">LEVEL</h4>
-                    <h5 class="fragment">HEADING</h5>
-                    <h6 class="fragment">COLORS</h6>
-                    <h6>
-                        Thanks to this project
-                        <a
-                            href="https://github.com/tcmmichaelb139/obsidian-tokyonight">
-                            
-                        </a>
-                        for the colorscheme!
-                    </h6>
-                </section>
-                <section>
-                    <section>
-                        <h1>Tailwind CSS</h1>
-                        <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <h5>Lorem, ipsum.</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Error quod fugiat harum
-                                    modi laboriosam dignissimos, maxime
-                                    possimus? Error, nihil in.
-                                </p>
-                            </div>
-                            <div>
-                                <h5>Lorem, ipsum.</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Error quod fugiat harum
-                                    modi laboriosam dignissimos, maxime
-                                    possimus? Error, nihil in.
-                                </p>
-                            </div>
-                            <div class="col-span-2">
-                                <h5>Lorem, ipsum.</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Error quod fugiat harum
-                                    modi laboriosam dignissimos, maxime
-                                    possimus? Error, nihil in.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <h1>Custom classes</h1>
-                        <div class="grid grid-cols-3 gap-8">
-                            <div class="border-r">
-                                <h5>border-r</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Illum, soluta!
-                                </p>
-                            </div>
-                            <div class="border-o">
-                                <h5>border-o</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Illum, soluta!
-                                </p>
-                            </div>
-                            <div class="border-y">
-                                <h5>border-y</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Illum, soluta!
-                                </p>
-                            </div>
-                        </div>
-                    </section>
+                    <h1>Условные операторы и циклы в SQL</h1>
+                    <img
+                        class="r-stretch"
+                        src="https://ktkv-presentations.github.io/db-12"
+                        data-type="qrcode" />
                 </section>
                 <section>
                     <section data-auto-animate>
-                        <h1>New code highlighting!</h1>
-                        <div>
-                            Now also has Tokyo Night
-                            <code>highlight.js</code>
-                            highlighting implementation
-                        </div>
-                        <pre><code data-trim data-noescape>
-var foo = {
-    bar: function () {
-             alert("Hello, World!");
-         }
-};	
-					</code></pre>
-                    </section>
-                    <section data-auto-animate>
-                        <h1>New code highlighting!</h1>
-                        <h5>Inline code highlighting is now also supported!</h5>
+                        <h1>Условные операторы в SQL</h1>
                         <p>
-                            Just wrap your code with
-                            <code>&lt;code&gt;</code>
-                            tag and get highlighting like this
-                            <code class="js">
-                                const foo = () => {return bar}
-                            </code>
-                            !
+                            позволяют выполнять различные действия в зависимости
+                            от условий
+                        </p>
+                        <h2>Оператор CASE</h2>
+                        <pre><code data-trim class="sql">
+SELECT 
+    CASE 
+        WHEN condition1 THEN result1
+        WHEN condition2 THEN result2
+        ELSE default_result
+    END AS alias_name
+FROM table_name;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4>Пример с CASE</h4>
+                        <pre><code data-trim class="sql">
+SELECT 
+    employee_name, 
+    salary,
+    CASE 
+        WHEN salary &lt; 3000 THEN 'Low'
+        WHEN salary BETWEEN 3000 AND 7000 THEN 'Medium'
+        ELSE 'High'
+    END AS salary_category
+FROM employees;
+                        </code></pre>
+                        <p>
+                            условие проверяет значение зарплаты сотрудников
+                            (salary) и в зависимости от диапазона возвращает
+                            текстовую метку (категорию зарплаты) — низкая,
+                            средняя или высокая зарплата
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4>Пример с использованием агрегатных функций</h4>
+                        <pre><code data-trim class="sql">
+SELECT 
+    department_id, 
+    AVG(salary) AS avg_salary,
+    CASE 
+        WHEN AVG(salary) &lt; 4000 THEN 'Below Average'
+        ELSE 'Above Average'
+    END AS salary_status
+FROM employees
+GROUP BY department_id;
+                        </code></pre>
+                        <p>
+                            оператор CASE используется совместно с агрегатной
+                            функцией AVG для определения статуса средней
+                            зарплаты по отделам
                         </p>
                     </section>
                 </section>
                 <section>
-                    <h1>Mermaid for beautiful diagrams!</h1>
-                    <div class="mermaid">
-                        <pre>
-						erDiagram
-    CUSTOMER ||--o{ ORDER : ""
-    CUSTOMER {
-        string name
-        string custNumber
-        string sector
-    }
-    ORDER ||--|{ LINE-ITEM : contains
-    ORDER {
-        int orderNumber
-        string deliveryAddress
-    }
-    LINE-ITEM {
-        string productCode
-        int quantity
-        float pricePerUnit
-    }
-    ORDER ||--|{ STUDENT : contains
-    STUDENT {
-        int orderNumber
-        string deliveryAddress
-    }
-						</pre
-                        >
-                    </div>
-                    <h4>
-                        Check documentation
-                        <a href="https://mermaid.js.org/config/usage.html">
-                            here
-                        </a>
-                        !
-                    </h4>
+                    <section data-auto-animate>
+                        <h1>Оператор IF</h1>
+                        <p>
+                            используется в хранимых процедурах и позволяет
+                            выполнять условия на основе значений переменных или
+                            результатов вычислений
+                        </p>
+                        <pre><code data-trim class="sql">
+IF condition THEN
+    -- SQL statements;
+ELSEIF another_condition THEN
+    -- SQL statements;
+ELSE
+    -- SQL statements;
+END IF;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4>Пример использования оператора IF</h4>
+                        <pre><code data-trim class="sql">
+DELIMITER //
+CREATE PROCEDURE CheckSalary(salary_value DECIMAL(10,2))
+BEGIN
+    IF salary_value &lt; 3000 THEN
+        SELECT 'Low salary';
+    ELSEIF salary_value BETWEEN 3000 AND 7000 THEN
+        SELECT 'Medium salary';
+    ELSE
+        SELECT 'High salary';
+    END IF;
+END //
+DELIMITER ;
+                        </code></pre>
+                        <p>
+                            создается хранимая процедура CheckSalary, которая
+                            принимает на вход зарплату сотрудника и возвращает
+                            текстовое сообщение с категорией зарплаты: низкая,
+                            средняя или высокая
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4></h4>
+                        <pre><code data-trim class="sql">
+DELIMITER //
+CREATE PROCEDURE UpdateBonus(employee_id INT, performance_rating DECIMAL(3,2))
+BEGIN
+    IF performance_rating &lt;= 4.5 THEN
+        UPDATE employees SET bonus = salary * 0.2 WHERE id = employee_id;
+    ELSEIF performance_rating &lt;= 3.0 THEN
+        UPDATE employees SET bonus = salary * 0.1 WHERE id = employee_id;
+    ELSE
+        UPDATE employees SET bonus = 0 WHERE id = employee_id;
+    END IF;
+END //
+DELIMITER ;
+                        </code></pre>
+                    </section>
                 </section>
                 <section>
-                    <h1>Now supports Nerd font icons!</h1>
-                    <div>Nerdy project that adds icons to font itself</div>
-                    <h6>
-                        Checkout their site for icons like this
-                        <a href="https://www.nerdfonts.com/">󰖟</a>
-                        !
-                    </h6>
+                    <section data-auto-animate>
+                        <h1>Оператор IFNULL/COALESCE для обработки NULL</h1>
+                        <p>
+                            используются для обработки значений NULL, заменяя их
+                            на заданное значение, если поле или выражение
+                            содержит NULL
+                        </p>
+                        <pre><code data-trim class="sql">
+SELECT IFNULL(column_name, default_value) AS alias_name
+FROM table_name;
+
+SELECT COALESCE(column1, column2, ..., default_value) AS alias_name
+FROM table_name;
+                        </code></pre>
+                        <div class="border-b">
+                            Для MySQL используется
+                            <code>IFNULL</code>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4>Пример использования IFNULL</h4>
+                        <pre><code data-trim class="sql">
+SELECT employee_name, IFNULL(phone, 'No Phone') AS phone_number
+FROM employees;
+                        </code></pre>
+                        <p>
+                            Если у сотрудника нет номера телефона (значение
+                            NULL), будет выведено сообщение "No Phone".
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4>
+                            Пример с COALESCE (универсальный для всех СУБД):
+                        </h4>
+                        <pre><code data-trim class="sql">
+SELECT employee_name, COALESCE(mobile_phone, home_phone, 'No Contact') AS contact_number
+FROM employees;
+                        </code></pre>
+                        <p>
+                            проверяет значения полей по очереди, возвращая
+                            первое ненулевое значение, если оба поля
+                            (mobile_phone и home_phone) пустые, будет выведено
+                            сообщение "No Contact",иначе первое ненулевое
+                            значение
+                        </p>
+                    </section>
                 </section>
                 <section>
-                    <h1>Now supports automatic QRCode generation!</h1>
-                    <div>
-                        With GoQR you can just add data-type and alt attributes
-                        to your
-                        <code class="html">
-                            &lt;img src="https://goqr.me/" data-type="qrcode" /
-                            &gt;
-                        </code>
-                        tag!
-                    </div>
-                    <img
-                        class="r-stretch"
-                        src="https://goqr.me/"
-                        data-type="qrcode" />
+                    <section data-auto-animate>
+                        <h1>Циклы в SQL</h1>
+                        <p>
+                            позволяют повторно выполнять набор инструкций до тех
+                            пор, пока выполняется определённое условие
+                        </p>
+                        <div class="border-b">
+                            SQL сам по себе не содержит встроенной поддержки
+                            циклов в обычных запросах, многие системы управления
+                            базами данных (СУБД) поддерживают циклы в хранимых
+                            процедурах
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Циклы WHILE</h1>
+                        <p>
+                            выполняет набор команд, пока заданное условие
+                            истинно
+                        </p>
+                        <pre><code data-trim class="sql">
+WHILE condition DO
+    -- SQL statements;
+END WHILE;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Циклы WHILE</h1>
+                        <h4>Пример цикла while</h4>
+                        <pre><code data-trim class="sql">
+DELIMITER //
+CREATE PROCEDURE GenerateSeries()
+BEGIN
+    DECLARE x INT DEFAULT 1;
+    WHILE x &lt;= 10 DO
+        INSERT INTO numbers (number) VALUES (x);
+        SET x = x + 1;
+    END WHILE;
+END //
+DELIMITER ;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Циклы в PL/pgSQL (PostgreSQL)</h1>
+                        <pre><code data-trim class="sql">
+LOOP
+    -- SQL statements;
+    EXIT WHEN condition;
+END LOOP;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4>Пример pqSQL</h4>
+                        <pre><code data-trim class="sql">
+DO $$
+DECLARE
+    counter INT := 1;
+BEGIN
+    LOOP
+        EXIT WHEN counter &lt; 10;
+        INSERT INTO numbers (number) VALUES (counter);
+        counter := counter + 1;
+    END LOOP;
+END $$;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>FOR Циклы в PostgreSQL</h1>
+                        <pre><code data-trim class="sql">
+FOR variable IN start_value..end_value LOOP
+    -- SQL statements;
+END LOOP;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>FOR Циклы в PostgreSQL</h1>
+                        <pre><code data-trim class="sql">
+BEGIN
+    FOR i IN 1..5 LOOP
+        INSERT INTO numbers (number) VALUES (i);
+    END LOOP;
+END;
+                        </code></pre>
+                    </section>
                 </section>
                 <section>
-                    <h1>New changes on the way!</h1>
+                    <section data-auto-animate>
+                        <h1>делимитер</h1>
+                        <p>
+                            символ, который используется для обозначения конца
+                            SQL-оператора или команды
+                        </p>
+                        <div class="border-b">
+                            По умолчанию в большинстве СУБД, таких как MySQL,
+                            делимитером является точка с запятой
+                            <code>;</code>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Зачем менять делимитер</h1>
+                        <p>
+                            При создании хранимых процедур, функций или
+                            триггеров часто необходимо использовать точку с
+                            запятой внутри тела процедуры
+                        </p>
+                        <pre><code data-trim class="sql">
+CREATE PROCEDURE ExampleProcedure()
+BEGIN
+    DECLARE v_message VARCHAR(100);
+    SET v_message = 'Hello, World!';
+    SELECT v_message;
+END
+DELIMITER ;
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Изменение делимитера</h1>
+                        <p>
+                            изменение делимитера выполняется с помощью команды
+                            DELIMITER
+                        </p>
+                        <pre><code data-trim class="sql">
+DELIMITER //
+                        </code></pre>
+                        <pre><code data-trim class="sql">
+DELIMITER //
+CREATE PROCEDURE ExampleProcedure()
+BEGIN
+    DECLARE v_message VARCHAR(100);
+    SET v_message = 'Hello, World!';
+    SELECT v_message;
+END //
+DELIMITER ;
+                        </code></pre>
+                        <div class="border-b">
+                            После завершения процедуры делимитер возвращается к
+                            стандартному
+                            <code>;</code>
+                        </div>
+                    </section>
                 </section>
             </div>
         </div>
@@ -396,4 +524,3 @@ var foo = {
         </script>
     </body>
 </html>
-
